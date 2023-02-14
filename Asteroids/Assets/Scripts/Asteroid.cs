@@ -77,6 +77,8 @@ public class Asteroid : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
+            AudioManager.Play(AudioClipName.AsteroidHit);
+
             Vector3 localScale = transform.localScale;
 
             if (localScale.x < 0.5f)
@@ -109,8 +111,6 @@ public class Asteroid : MonoBehaviour
 
     public void StartMoving(float angle)
     {
-
-
         // apply impulse force to get asteroid moving
         const float MinImpulseForce = 1f;
         const float MaxImpulseForce = 3f;

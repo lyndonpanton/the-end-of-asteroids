@@ -55,6 +55,8 @@ public class Ship : MonoBehaviour
         // shoot as appropriate
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
+            AudioManager.Play(AudioClipName.PlayerShot);
+
             GameObject bullet = Instantiate(prefabBullet, transform.position, Quaternion.identity);
             Bullet script = bullet.GetComponent<Bullet>();
             script.ApplyForce(thrustDirection);
@@ -83,6 +85,7 @@ public class Ship : MonoBehaviour
         if (coll.gameObject.CompareTag("Asteroid"))
         {
             hud.StopGameTimer();
+            AudioManager.Play(AudioClipName.PlayerDeath);
             Destroy(gameObject);
         }
     }
