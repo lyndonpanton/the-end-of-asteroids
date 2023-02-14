@@ -79,24 +79,31 @@ public class Asteroid : MonoBehaviour
         {
             Vector3 localScale = transform.localScale;
 
-            localScale.x /= 2;
-            localScale.y /= 2;
+            if (localScale.x < 0.5f)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                localScale.x /= 2;
+                localScale.y /= 2;
 
-            transform.localScale = localScale;
+                transform.localScale = localScale;
 
-            CircleCollider2D cc2d = GetComponent<CircleCollider2D>();
-            cc2d.radius /= 2;
+                CircleCollider2D cc2d = GetComponent<CircleCollider2D>();
+                cc2d.radius /= 2;
 
-            GameObject splitAsteroid1 = Instantiate(gameObject);
-            GameObject splitAsteroid2 = Instantiate(gameObject);
+                GameObject splitAsteroid1 = Instantiate(gameObject);
+                GameObject splitAsteroid2 = Instantiate(gameObject);
 
-            Destroy(gameObject);
+                Destroy(gameObject);
 
-            float randomAngle1 = Random.value * 360f * Mathf.Deg2Rad;
-            splitAsteroid1.GetComponent<Asteroid>().StartMoving(randomAngle1);
+                float randomAngle1 = Random.value * 360f * Mathf.Deg2Rad;
+                splitAsteroid1.GetComponent<Asteroid>().StartMoving(randomAngle1);
 
-            float randomAngle2 = Random.value * 360f * Mathf.Deg2Rad;
-            splitAsteroid2.GetComponent<Asteroid>().StartMoving(randomAngle2);
+                float randomAngle2 = Random.value * 360f * Mathf.Deg2Rad;
+                splitAsteroid2.GetComponent<Asteroid>().StartMoving(randomAngle2);
+            }
         }
     }
 
