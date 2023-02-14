@@ -14,6 +14,8 @@ public class HUD : MonoBehaviour
 
     float timeElapsed;
 
+    bool isTimerRunning = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +26,14 @@ public class HUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeElapsed += Time.deltaTime;
+        if (isTimerRunning) {
+            timeElapsed += Time.deltaTime;
+            textMeshProUGUI.text = ((int)timeElapsed).ToString(); 
+        }
+    }
 
-        textMeshProUGUI.text = ((int)timeElapsed).ToString();
+    public void StopGameTimer()
+    {
+        isTimerRunning = false;
     }
 }

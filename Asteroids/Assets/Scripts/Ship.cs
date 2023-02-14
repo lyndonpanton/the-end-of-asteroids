@@ -17,6 +17,9 @@ public class Ship : MonoBehaviour
     [SerializeField]
     GameObject prefabBullet;
 
+    [SerializeField]
+    HUD hud;
+
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
@@ -79,6 +82,7 @@ public class Ship : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("Asteroid"))
         {
+            hud.StopGameTimer();
             Destroy(gameObject);
         }
     }

@@ -659,6 +659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabBullet: {fileID: 1229898408013148, guid: 7bdc5d023b0c3034293d8b4561645164,
     type: 3}
+  hud: {fileID: 4493481}
 --- !u!50 &1879896515
 Rigidbody2D:
   serializedVersion: 4
