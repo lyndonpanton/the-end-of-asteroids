@@ -66,15 +66,7 @@ public class Asteroid : MonoBehaviour
             angle = -15 * Mathf.Deg2Rad + randomAngle;
         }
 
-        // apply impulse force to get asteroid moving
-        const float MinImpulseForce = 1f;
-        const float MaxImpulseForce = 3f;
-        Vector2 moveDirection = new Vector2(
-            Mathf.Cos(angle), Mathf.Sin(angle));
-        float magnitude = Random.Range(MinImpulseForce, MaxImpulseForce);
-        GetComponent<Rigidbody2D>().AddForce(
-            moveDirection * magnitude,
-            ForceMode2D.Impulse);
+        StartMoving(angle);
     }
 
     /// <summary>
@@ -99,6 +91,27 @@ public class Asteroid : MonoBehaviour
             GameObject splitAsteroid2 = Instantiate(gameObject);
 
             Destroy(gameObject);
+
+            float randomAngle1 = Random.value * 360f * Mathf.Deg2Rad;
+            splitAsteroid1.GetComponent<Asteroid>().StartMoving(randomAngle1);
+
+            float randomAngle2 = Random.value * 360f * Mathf.Deg2Rad;
+            splitAsteroid2.GetComponent<Asteroid>().StartMoving(randomAngle2);
         }
+    }
+
+    public void StartMoving(float angle)
+    {
+
+
+        // apply impulse force to get asteroid moving
+        const float MinImpulseForce = 1f;
+        const float MaxImpulseForce = 3f;
+        Vector2 moveDirection = new Vector2(
+            Mathf.Cos(angle), Mathf.Sin(angle));
+        float magnitude = Random.Range(MinImpulseForce, MaxImpulseForce);
+        GetComponent<Rigidbody2D>().AddForce(
+            moveDirection * magnitude,
+            ForceMode2D.Impulse);
     }
 }
