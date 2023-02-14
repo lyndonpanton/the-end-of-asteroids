@@ -80,12 +80,24 @@ public class Asteroid : MonoBehaviour
     /// <summary>
     /// Destroys the asteroid on collision with a bullet
     /// </summary>
-    /// <param name="coll">collision info</param>
-    void OnCollisionEnter2D(Collision2D coll)
+    /// <param name="collision">collision info</param>
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (coll.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Bullet"))
         {
-            Destroy(coll.gameObject);
+            Vector3 localScale = transform.localScale;
+
+            localScale.x /= 2;
+            localScale.y /= 2;
+
+            transform.localScale = localScale;
+
+            CircleCollider2D cc2d = GetComponent<CircleCollider2D>();
+            cc2d.radius /= 2;
+
+            GameObject splitAsteroid1 = Instantiate(gameObject);
+            GameObject splitAsteroid2 = Instantiate(gameObject);
+
             Destroy(gameObject);
         }
     }
