@@ -8,7 +8,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     // death support
-    const float LifeSeconds = 2;
+    const float LifeSeconds = 1;
     Timer deathTimer;
 
     /// <summary>
@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour
     /// <param name="forceDirection">force direction</param>
     public void ApplyForce(Vector2 forceDirection)
     {
-        const float forceMagnitude = 3;
+        const float forceMagnitude = 10.0f;
         GetComponent<Rigidbody2D>().AddForce(
             forceMagnitude * forceDirection,
             ForceMode2D.Impulse);
